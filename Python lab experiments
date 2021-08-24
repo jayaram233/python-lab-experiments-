@@ -1,0 +1,564 @@
+1.1 Write a program that asks the user for a weight in kilograms and converts it to pounds. There are 2.2 pounds in a kilogram¶
+In [3]:
+
+kilograms = float(input('Enter weight in Kilograms: '))
+pounds = kilograms * 2.2
+print(f'{kilograms} Kilograms = {pounds} Pounds')
+10.0 Kilograms = 22.0 Pounds
+
+1.2 Write a program that asks the user to enter three numbers (use three separate input statements). Create variables called total and average that hold the sum and average of the three numbers and print out the values of total and average
+In [4]:
+num1 = int(input('Enter First Number: '))
+num2 = int(input('Enter Second Number: '))
+num3 = int(input('Enter Third Number: '))
+total = num1 + num2 + num3
+average = total / 3
+print(f'{num1} + {num2} + {num3} = {total}')
+print(f'Average({num1}, {num2}, {num3}) = {average:.2f}')
+10 + 20 + 30 = 60
+Average(10, 20, 30) = 20.00
+2.1 Write a program that uses a for loop to print the numbers 8, 11, 14, 17, 20, . . . , 83, 86, 89
+In [6]:
+for val in range(8,90,3):
+    print(val, end=', ')
+8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38, 41, 44, 47, 50, 53, 56, 59, 62, 65, 68, 71, 74, 77, 80, 83, 86, 89, 
+2.2 Write a program that asks the user for their name and how many times to print it. The program should print out the user’s name the specified number of times
+In [8]:
+name = input('Enter your name')
+times = int(input('Enter the number of times to repeat: '))
+print((name + ' ') * times)
+print((name + '\n') * times)
+anand anand anand 
+anand
+anand
+anand
+
+3.1 Use a for loop to print a triangle like the one below. Allow the user to specify how high the triangle should be
+In [12]:
+height = int(input('Enter the triangle height: ')) + 1
+for i in range(1, height): print('*' * i)
+*
+**
+***
+****
+*****
+3.2 Generate a random number between 1 and 10. Ask the user to guess the number and print a message based on whether they get it right or not
+In [13]:
+import random
+rand = random.randint(1, 10)
+guess = int(input('Guess the number'))
+if guess == rand :
+    print('Yes, you guessed the number')
+else:
+    print('No, your guess is wrong')
+
+print('your gess is {}'.format('correct' if guess == rand else 'wrong'))
+No, your guess is wrong
+your gess is wrong
+3.3 Write a program that asks the user for two numbers and prints Close if the numbers are within .001 of each other and Not close otherwise
+In [19]:
+num1 = float(input('Enter First Number: '))
+num2 = float(input('Enter Second Number: '))
+print(num1, num2, num1 - num2)
+diff = abs(int((num1 - num2) * 1000) / 1000)
+print(diff)
+print('Close' if diff <= 0.001 else 'Not Close')
+10.12 10.121 -0.0010000000000012221
+0.001
+Close
+4.1 Write a program that asks the user to enter a word and prints out whether that word contains any vowels
+In [20]:
+word = input('Enter a word: ')
+for ch in word:
+    if ch in 'aeiouAEIOU':
+        print(f'{word} contains vowels')
+        break
+print(f'{word} contains NO vowels')
+rhythms contains NO vowels
+4.2 Write a program that asks the user to enter two strings. The program should then check to see if the strings are of the same length. If they are not, the program should print an appropriate message and exit. If they are of the same length, the program should alternate the characters of the two strings. For example, if the user enters abcde and ABCDE the program should print out AaBbCcDdEe
+In [24]:
+str1 = input("Enter First String: ")
+str2 = input("Enter Second String: ")
+l1 = len(str1)
+l2 = len(str2)
+if l1 != l2:
+    print(f'len({str1}) = {l1} and len({str2}) = {l2}')
+else:
+    str = ''
+    for i in range(l1):
+        str += str1[i] + str2[i]
+    print(str1, str2, str)
+anand kumar aknuamnadr
+4.3 Write a program that asks the user for a large integer and inserts commas into it according to the standard American convention for commas in large numbers. For instance, if the user enters 1000000, the output should be 1,000,000
+In [25]:
+num = int(input('Enter a large number: '))
+print(f'{num:,}')
+1,000,000
+4.4 In algebraic expressions, the symbol for multiplication is often left out, as in 3x+4y or 3(x+5). Computers prefer those expressions to include the multiplication symbol, like 3x+4y or 3*(x+5). Write a program that asks the user for an algebraic expression and then inserts multiplication symbols where appropriate
+In [8]:
+expr = input('Enter a mathematical expression: ')
+print(expr)
+conv_expr = ''
+for i in range(len(expr)-1):
+    if expr[i].isalnum() and (expr[i+1].isalpha() or expr[i+1] == '('):
+        conv_expr += expr[i] + '*'
+    elif expr[i] == ')' and expr[i+1] == '(':
+        conv_expr += expr[i] + '*'
+    else:
+        conv_expr += expr[i]
+conv_expr += expr[i+1]
+print(conv_expr)
+(100xy + 58yz)(x + y)
+(100*x*y + 58*y*z)*(x + y)
+5.1 Write a program that generates a list of 20 random numbers between 1 and 100.
+(a) Print the list.
+(b) Print the average of the elements in the list.
+(c) Print the largest and smallest values in the list.
+(d) Print the second largest and second smallest entries in the list
+(e) Print how many even numbers are in the list.
+In [13]:
+import random
+num_list = [random.randint(1, 100) for i in range(20)]
+print(num_list)
+print('Average = {:.2f}'.format(sum(num_list) / 20))
+mn, mx = min(num_list), max(num_list)
+print(f'Lagrest Value = {mx} and Smallest Value = {mn}')
+num_set = set(num_list)
+num_set.remove(mn)
+num_set.remove(mx)
+mn, mx = min(num_set), max(num_set)
+print(f'Second Lagrest Value = {mx} and Second Smallest Value = {mn}')
+even_count = len([x for x in num_list if x & 1 == 0])
+print(f'Number of even numbers = {even_count}')
+[98, 7, 70, 80, 38, 10, 48, 27, 83, 84, 6, 39, 18, 50, 52, 94, 28, 41, 63, 56]
+Average = 49.60
+Lagrest Value = 98 and Smallest Value = 6
+Second Lagrest Value = 94 and Second Smallest Value = 7
+Number of even numbers = 14
+5.2 Write a program that asks the user for an integer and creates a list that consists of the factors of that integer
+In [16]:
+import math
+num = int(input('Enter an Integer value: '))
+factors = [1, num]
+ci = 1
+for i in range(2, int(math.sqrt(num)) + 1):
+    if num % i == 0:
+        d = num // i
+        factors.insert(ci, i)
+        if d != i:
+            ci += 1
+            factors.insert(ci, d)
+print(num)
+print(*factors)
+80
+1 2 4 5 8 10 16 20 40 80
+5.3 Write a program that generates 100 random integers that are either 0 or 1. Then find the longest run of zeros in a row. For instance, the longest run of zeros in [1,0,1,1,0,0,0,0,1,0,0] is 4
+In [21]:
+import random
+
+def longest_zero_runlength(bin_list):
+    mrl = 0
+    rl = 0
+    p = 1
+    for x in bin_list:
+        if x == 0:
+            if p == 0:
+                rl += 1
+            else:
+                rl = 1
+                p = 0
+        elif p == 0:
+            mrl = max(mrl, rl)
+            p = 1
+    return mrl
+
+bin_list = [random.randint(0,1) for x in range(100)]
+print(bin_list)
+print(f'Longest run of zeros = {longest_zero_runlength(bin_list)}')
+[1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1]
+Longest run of zeros = 6
+6.1 Write a program that removes any repeated items from a list so that each item appears at most once. For instance, the list [1,1,2,3,4,3,0,0] would become [1,2,3,4,0]
+In [23]:
+list_with_dups = [1,2,1,3,4,3,0,2,0]
+list_without_dups_no_input_order = list(set(list_with_dups))
+print(*list_with_dups)
+print(*list_without_dups_no_input_order)
+list_without_dups = dict.fromkeys(list_with_dups)
+print(*list_without_dups)
+1 2 1 3 4 3 0 2 0
+0 1 2 3 4
+1 2 3 4 0
+6.2 Write a program that asks the user to enter a length in feet. The program should then give the user the option to convert from feet into inches, yards, miles, millimeters, centimeters, meters, or kilometers. Say if the user enters a 1, then the program converts to inches, if they enter a 2, then the program converts to yards, etc. While this can be done with if statements,it is much shorter with lists and it is also easier to add new conversions if you use lists
+In [26]:
+units = ['inches', 'yards', 'miles', 'millimeters', 'centimeters', 'meters', 'kilometers']
+conv_from_feet = [12, 0.33333, 0.000189393939, 304.8, 30.48, 0.3048, 0.0003048]
+feets = float(input('Enter length in feets: '))
+for i, v in enumerate(units):
+    print(f'Enter {i + 1} to convert feets to {v}')
+i = int(input('Enter your choice')) - 1
+print(f'The length in {units[i]} = {feets * conv_from_feet[i]}')
+Enter 1 to convert feets to inches
+Enter 2 to convert feets to yards
+Enter 3 to convert feets to miles
+Enter 4 to convert feets to millimeters
+Enter 5 to convert feets to centimeters
+Enter 6 to convert feets to meters
+Enter 7 to convert feets to kilometers
+The length in meters = 3.048
+6.3 Write a python script to perform following operations:
+i) Create a matrix and print it
+ii) Perform Addition of 2 matrices
+iii)Perform multiplication of 2 matrices
+In [4]:
+def create_matrix(rows, cols):
+    matrix = []
+    for r in range(rows):
+        row = []
+        for c in range(cols):
+            v = int(input(f'Enter element at row {r}, column {c} :'))
+            row.append(v)
+        matrix.append(row)
+    return matrix
+
+def mat_add(first, second):
+    matrix = []
+    if len(first) == len(second) and len(first[0]) == len(second[0]):
+        matrix = [[first[i][j] + second[i][j]  for j in range(len(first[0]))] for i in range(len(first))]
+    return matrix
+
+def mat_mul(first, second):
+    matrix = []
+    if len(first[0]) == len(second):
+        matrix = [[sum(a*b for a, b in zip(row, col)) for col in zip(*second)] for row in first]
+    return matrix
+
+def disp(matrix):
+    for row in matrix:
+        for val in row:
+            print(f'{val:3d}', end=' ')
+        print()
+
+rows = int(input('Enter number of rows: '))
+cols = int(input('Enter number of columns: '))
+mat1 = create_matrix(rows, cols)
+mat2 = create_matrix(rows, cols)
+res = mat_add(mat1, mat2)
+disp(res)
+print('-----------------')
+res = mat_mul(mat1, mat2)
+disp(res)
+  5   5 
+  5   5 
+  8   5 
+ 20  13 
+7.1 Write a function called sum_digits that is given an integer num and returns the sum of the digits of num
+In [2]:
+def sum_digits(num):
+    digits = [int(d) for d in str(num)]
+    return sum(digits)
+
+print(sum_digits(123))
+6
+7.2 Write a function called first_diff that is given two strings and returns the first location in which the strings differ. If the strings are identical, it should return -1
+In [3]:
+def first_diff(str1, str2):
+    ms = min(len(str1), len(str2))
+    for i in range(ms):
+        if str1[i] != str2[i]: return i
+    return -1
+
+print(first_diff('anand', 'anand'))
+print(first_diff('anand', 'ananth'))
+-1
+4
+7.3 Write a function called number_of_factors that takes an integer and returns how many factors the number has
+In [4]:
+import math
+
+def number_of_factors(num):
+    count = 2
+    for i in range(2, int(math.sqrt(num)) + 1):
+        if num % i == 0:
+            count += 1 if num // i == i else 2
+    return count if num > 2 else num
+
+print(number_of_factors(1))
+print(number_of_factors(2))
+print(number_of_factors(12))
+1
+2
+6
+7.4 Write a function called is_sorted that is given a list and returns True if the list is sorted and False otherwise
+In [4]:
+def is_sorted(nums):
+    if len(nums) <= 1:
+        return True
+    else:
+        desc = True if nums[0] > nums[1] else False
+        if desc:
+            for i in range(1, len(nums) - 1):
+                if nums[i] < nums[i+1]: return False
+            return True
+        else:
+            for i in range(1, len(nums) - 1):
+                if nums[i] > nums[i+1]: return False
+            return True
+
+print(is_sorted([]))
+print(is_sorted([1]))
+print(is_sorted([1, 2, 3]))
+print(is_sorted([3, 2, 1]))
+print(is_sorted([1, 3, 2]))
+True
+True
+True
+True
+False
+8.1 Write a function called root that is given a number x and an integer n and returns x1/n . In the function definition, set the default value of n to 2
+In [10]:
+def root(x, n = 2, /):
+    return round(x ** (1/n), 3)
+
+print(root(4,2))
+print(root(81,4))
+print(root(2))
+2.0
+3.0
+1.414
+8.2 Write a function called primes that is given a number n and returns a list of the first n primes. Let the default value of n be 100
+In [8]:
+import math
+def is_prime(n):
+    for k in range(2, int(math.sqrt(n)) + 1):
+        if n % k == 0: return False
+    return True
+
+def primes(n=100):
+    if n == 0: return []
+    elif n == 1: return [2]
+    else:
+        primes = [2]
+        k = 3
+        while n > 1:
+            if is_prime(k):
+                primes.append(k)
+                n -= 1
+            k += 2
+    return primes
+
+print(primes(0))
+print(primes(1))
+print(primes(10))
+[]
+[2]
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+8.3 Write a function called merge that takes two already sorted lists of possibly different lengths, and merges them into a single sorted list
+a) Using sort method b) without using sort method
+In [15]:
+def merge1(lst1, lst2):
+    return sorted(lst1 + lst2)
+
+def merge2(lst1, lst2):
+    l1 = len(lst1)
+    l2 = len(lst2)
+    i1 = 0
+    i2 = 0
+    res = []
+    while i1 < l1 and i2 < l2:
+        if lst1[i1] <= lst2[i2]:
+            res.append(lst1[i1])
+            i1 += 1
+        else:
+            res.append(lst2[i2])
+            i2 += 1
+    
+    while i1 < l1:
+        res.append(lst1[i1])
+        i1 += 1
+
+    while i2 < l2:
+        res.append(lst2[i2])
+        i2 += 1
+    
+    return res
+
+print(merge1([1,3,5], [2,4,6]))
+print(merge2([1,3,5], [2,4,6]))
+print(merge2([1,3,5], [2,4,6,7,8]))
+print(merge2([1,3,5], [2]))
+[1, 2, 3, 4, 5, 6]
+[1, 2, 3, 4, 5, 6]
+[1, 2, 3, 4, 5, 6, 7, 8]
+[1, 2, 3, 5]
+8.4 Write a program that asks the user for a word and finds all the smaller words that can be made from the letters of that word. The number of occurrences of a letter in a smaller word can’t exceed the number of occurrences of the letter in the user’s word
+In [20]:
+from itertools import permutations
+
+def powerset(word):
+    for i in range(0, len(word) + 1):
+        for p in permutations(word, i):
+            print(''.join(p), end=' ')
+
+powerset('and')
+ a n d an ad na nd da dn and adn nad nda dan dna 
+9.1 Write a program that reads a file consisting of email addresses, each on its own line. Your program should print out a string consisting of those email addresses separated by semicolons
+In [29]:
+with open('emails.txt') as f:
+    lines = [x.strip() for x in f.readlines()]
+    print(*lines, sep=';', end=' ')
+akkinjarapu@gmail.com;anandakumark@aec.edu.in;venkateshm@aec.edu.in 
+9.2 Write a program that reads a list of temperatures from a file called temps.txt, converts those temperatures to Fahrenheit, and writes the results to a file called ftemps.txt
+In [31]:
+with open('ctemps.txt') as f1, open('ftemps.txt', 'w') as f2:
+    f2.writelines([str(int(ct.strip()) * 9 / 5 +32) + '\n' for ct in f1.readlines()])
+9.3 Write a program to count frequency of characters in a given file
+In [32]:
+fc = {}
+with open('emails.txt') as f:
+    for ch in f.read():
+        if ch.isprintable():
+            fc[ch] = fc.get(ch, 0) + 1
+print(fc)
+{'a': 11, 'k': 5, 'i': 4, 'n': 6, 'j': 1, 'r': 2, 'p': 1, 'u': 4, '@': 3, 'g': 1, 'm': 4, 'l': 1, '.': 5, 'c': 3, 'o': 1, 'd': 3, 'e': 6, 'v': 1, 't': 1, 's': 1, 'h': 1}
+10.1 Write a class called Product. The class should have fields called name, amount, and price, holding the product’s name, the number of items of that product in stock, and the regular price of the product. There should be a method get_price that receives the number of items to be bought and returns a the cost of buying that many items, where the regular price is charged for orders of less than 10 items, a 10% discount is applied for orders of between 10 and 99 items, and a 20% discount is applied for orders of 100 or more items. There should also be a method called make_purchase that receives the number of items to be bought and decreases amount by that much
+In [33]:
+class Product:
+    def __init__(self, name, amount, price) -> None:
+        self.name = name
+        self.amount = amount
+        self.price = price
+
+    def get_price(self, qty):
+        if qty >= 100:
+            return self.price * 8 / 10
+        elif qty >= 10:
+            return self.price * 9 / 10
+        else:
+            return self.price
+
+    def make_purchase(self, qty):
+        self.amount = max(0, self.amount - qty)
+
+    def __str__(self) -> str:
+        return f'Product[{self.amount} {self.name} available @{self.price}]'
+
+p = Product('custard apple', 200, 25)
+print(p)
+print(p.get_price(4))
+print(p.get_price(25))
+print(p.get_price(150))
+p.make_purchase(25)
+print(p)
+Product[200 custard apple available @25]
+25
+22.5
+20.0
+Product[175 custard apple available @25]
+10.2 Write a class called Time whose only field is a time in seconds. It should have a method called convert_to_minutes that returns a string of minutes and seconds formatted as in the following example: if seconds is 230, the method should return '5:50'. It should also have a method called convert_to_hours that returns a string of hours, minutes, and seconds formatted analogously to the previous method
+In [39]:
+class Time:
+    def __init__(self, seconds):
+        self.seconds = seconds
+
+    def convert_to_minites(self):
+        return f'{self.seconds // 60}:{self.seconds % 60}'
+
+    def convert_to_hours(self):
+        hours = self.seconds // 3600
+        rem_seconds = self.seconds - (hours) * 3600
+        return f'{hours:02d}:{rem_seconds // 60:02d}:{rem_seconds % 60:02d}'
+
+t = Time(230)
+print(t.convert_to_minites())
+print(t.convert_to_hours())
+3:50
+00:03:50
+10.3 Write a class called Converter. The user will pass a length and a unit when declaring an object from the class—for example, c = Converter(9,'inches'). The possible units are inches, feet, yards, miles, kilometers, meters, centimeters, and millimeters. For each of these units there should be a method that returns the length converted into those units. For example, using the Converter object created above, the user could call c.feet() and should get 0.75 as the result
+In [6]:
+class Converter:
+    def __init__(self, length, units) -> None:
+        self.length = length
+        self.units = units
+        self.convertions = {'miles' : 1, 'yards': 1760, 'feet': 5280, 
+                            'inches' : 63360, 'kilometers': 1.60934, 
+                            'meters': 1609.34, 'centimeters': 160934, 'millimeters': 1609340}
+
+    def inches(self):
+        return self.length * self.convertions.get('inches') / self.convertions.get(self.units)
+
+    def feet(self):
+        return self.length * self.convertions.get('feet') / self.convertions.get(self.units)
+
+    def yards(self):
+        return self.length * self.convertions.get('yards') / self.convertions.get(self.units)
+
+    def miles(self):
+        return self.length * self.convertions.get('miles') / self.convertions.get(self.units)
+
+    def kilometers(self):
+        return self.length * self.convertions.get('kilometers') / self.convertions.get(self.units)
+
+    def meters(self):
+        return self.length * self.convertions.get('meters') / self.convertions.get(self.units)
+
+    def centimeters(self):
+        return self.length * self.convertions.get('centimeters') / self.convertions.get(self.units)
+
+    def millimeters(self):
+        return self.length * self.convertions.get('millimeters') / self.convertions.get(self.units)
+
+c = Converter(10, 'kilometers')
+print(c.inches())
+print(c.feet())
+print(c.yards())
+print(c.miles())
+print(c.meters())
+print(c.centimeters())
+print(c.millimeters())
+393701.76594131754
+32808.4804951098
+10936.1601650366
+6.213727366498068
+10000.0
+1000000.0
+10000000.0
+11.1 Write a Python class to implement pow(x, n)
+In [24]:
+class Power:
+    @classmethod
+    def pow(self, x, n):
+        if n == 0: return 1
+        p = 1
+        while(n > 0):
+            if n & 1: p *= x
+            n >>= 1
+            x *= x
+
+        return p
+
+    @classmethod
+    def rpow(self, x, n):
+        if n == 0: return 1
+        elif n == 1: return x
+        v = self.rpow(x, n >> 1)
+        if n & 1 == 1: return v * v * x
+        else: return v * v
+
+print(Power.pow(3, 0))
+print(Power.pow(3, 1))
+print(Power.pow(3, 4))
+print(Power.pow(2, 7))
+print(Power.rpow(2, 7))
+1
+3
+81
+128
+128
+11.2 Write a Python class to reverse a string word by word
+In [ ]:
+class ReverseWords:
+    @classmethod
+    def reverse(self, line):
+        return ' '.join(reversed(line.split()))
+
+print(ReverseWords.reverse('Welcome to python programming'))
